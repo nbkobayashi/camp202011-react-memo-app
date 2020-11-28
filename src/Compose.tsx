@@ -1,9 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View, TextInput } from "react-native";
+import { save } from "./Store";
 
 export function Compose() {
+  const [text, setText] = React.useState("");
   // 画面遷移の定義
   const navigation = useNavigation();
 
@@ -12,9 +14,20 @@ export function Compose() {
     navigation.goBack();
   };
 
+  // 保存ボタンを押した時の関数
+  const onSave = () => {
+    save(text, Date.now());
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Main</Text>
+      <TextInput
+        placeholder="メモしたいことを入力してください。"
+        multiline
+        onChangeText={text => setText(text)}
+      />
+      <Button onPress={onSave} title="保存" />
       <Button onPress={toBack} title="戻る" />
       <StatusBar style="auto" />
     </View>
