@@ -1,12 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export function Compose() {
-  // defaultを削除して名前をComposeに変更
+  // 画面遷移の定義
+  const navigation = useNavigation();
+
+  // Main画面に戻る関数を用意
+  const toBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Compose Screen</Text> {/* 画面が変わった時に分かるように変更 */}
+      <Text>Main</Text>
+      <Button onPress={toBack} title="戻る" />
       <StatusBar style="auto" />
     </View>
   );
