@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Button, StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { TextInput, Button } from "react-native-paper";
 import { save } from "./Store";
 
 export function Compose() {
@@ -27,8 +28,12 @@ export function Compose() {
         multiline
         onChangeText={text => setText(text)}
       />
-      <Button onPress={onSave} title="保存" />
-      <Button onPress={toBack} title="戻る" />
+      {/* <Button onPress={onSave} title="保存" /> */}
+      <Button onPress={onSave} mode="contained">
+        保存
+      </Button>
+      {/* <Button onPress={toBack} title="戻る" /> */}
+      
       <StatusBar style="auto" />
     </View>
   );
